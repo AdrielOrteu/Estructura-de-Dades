@@ -1,0 +1,46 @@
+Exercici 2 (nivell mig)  AVALUABLE
+
+
+Volem crear un conjunt de classes per poder gestionar les reserves d’habitació que es fan a un hotel utilitzant les llistes de python.
+
+1.       Utilitzeu la classe date de python (#import datetime) que implementa una data per poder guardar dates en format any, mes, dia (també afegeix hora minut i segon però nosaltres no utilitzarem aquesta part. La classe permet:
+
+a)       Definir una data a partir de l’any mes i dia: data=datetiem.datetime(any,mes, dia) a on any, mes i dia son sencers. Exemple: data=datetime.datetim(2021,10,19)
+b)      data.year ens retorna l’any, data.month el mes i data.day el dia.
+c)       Podem compara dues dates amb els operadors de == ; < i >
+d)      Podem sumar dies a una data: data nova = datavella+ datetime.timedelta(days=1)
+e)      Suposem que les dates que ens donen són correctes.
+f)        Podem printar una data per pantalla.
+
+2.       Declareu i implementeu una classe Reserva per poder guardar les dades d’una reserva d’habitació. Aquesta classe ha de tenir atributs per guardar el nom del client que fa la reserva, les dates d’inici i de final de la reserva, el nº d’habitacions que es reserven i el preu de la reserva. A més a més haurà de tenir el constructor (__init__) i tots els getters i setters necessaris per implementar la classe ReservesHotel que es descriu a continuació.
+
+3.       Declareu i implementeu la classe ReservesHotel. Per guardar els valors de les dates d’inici i final de la reserva heu de fer servir la classe datetime descrita a l’apartat1. Utilitzant la classe Reserva de l’exercici anterior declareu i implementeu una classe ReservesHotel que permeti guardar totes les reserves que es fan en un hotel. A la classe hi hem de poder guardar el nom de l’hotel, el preu per dia de l’habitació, el nº d’habitacions de l’hotel i les dades de totes les reserves utilitzant la classe Reserva del punt anterior.
+
+-          Feu la declaració de la classe amb tots els atributs que calgui per guardar les dades de l’hotel i les seves reserves.
+
+-          Implementeu el mètode __init__ que pugui rebre:
+
+                                                   i.      Com a paràmetres el nom de l’hotel, el preu per dia de l’habitació i el nº d’habitacions de l’hotel.
+
+                                                 ii.      Un altre ReservesHotel
+
+-          Implementeu un mètode llegeixReserves() que permeti llegir d’un fitxer totes les dades de les reserves de l’hotel. Ha de rebre com a paràmetre el nom del fitxer. Si ja hi havia reserves a les dades de l’hotel, les reserves que es llegeixin del fitxer s’afegiran a les que ja hi havia.
+
+-          El fitxer té el següent format (les dates estan guardades al fitxer en format DD/MM/YYYY però amb espais):
+
+NOM_CLIENT_1 DATA_ENTRADA_1 N_HABITACIONS_1 N_DIES_1
+NOM_CLIENT_2 DATA_ENTRADA_2 N_HABITACIONS_2 N_DIES_2
+...
+NOM_CLIENT_N DATA_ENTRADA_N N_HABITACIONS_N N_DIES_N
+
+Aquí teniu un exemple:
+
+CLIENT_1 01 01 2025 1 1
+CLIENT_2 10 02 2025 1 2
+
+-          Implementeu un mètode nReservesDia() que retorni quantes habitacions hi ha reservades per un dia concret que es passa com a paràmetre utilitzant un objecte de la classe Data.
+
+-          Implementeu un mètode afegeixReserva() que permeti afegir una nova reserva a la llista de reserves. Aquest mètode rebrà com a paràmetres el nom del client, la data d’entrada, el nº de dies d’estada i el nº d’habitacions a reservar. S’haurà de comprovar que a l’hotel quedin suficients habitacions lliures per tots els dies de l’estada. Per fer-ho podeu utilitzar el mètode nReservesDia de l’apartat anterior. Si la reserva és possible el mètode retornarà true i si no és possible retornarà false.
+
+-          Implementeu un mètode consultaReserva() que rebi com a paràmetres el nom d’un client i una data d’entrada (utilitzant un objecte de la classe Data) i retorni, Si la reserva no existeix false, i si existeix, true i a continuació la resta de dades de la reserva que ha fet aquest client: data de sortida, nº d’habitacions i preu de la reserva.
+
