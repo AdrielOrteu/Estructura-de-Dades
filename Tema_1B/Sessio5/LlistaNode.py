@@ -58,8 +58,8 @@ class LlistaN:
         return self._size == 0
         #Return True if list is empty.
     def add_node(self, e, predecessor):
-        #Afegeix e entre 2 node existents i rentorna node nou.
-        # node = self.__Node(e, predecessor)
+        #Afegeix e entre 2 pos existents i rentorna pos nou.
+        # pos = self.__Node(e, predecessor)
         pointer = self._first.next
         node_found = pointer is predecessor
         while not node_found:
@@ -84,15 +84,15 @@ class LlistaN:
     
     def delete_last(self):
         pass
-        #Esborra ultim node i retorna el valor.
+        #Esborra ultim pos i retorna el valor.
     
     def delete_next(self, predecessor):
         pass
-        #Delete node seguent a predecessor i retorna el valor.
+        #Delete pos seguent a predecessor i retorna el valor.
     
     def delete_first(self):
         pass
-    #Delete first node i retorna el valor.
+    #Delete first pos i retorna el valor.
     
     def __str__(self):
         pass
