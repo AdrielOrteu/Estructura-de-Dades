@@ -236,7 +236,3 @@ class LlistaDobleN:
                 tmp += node.__str__()
         return tmp + "⟧"
 
-a = LlistaDobleN([0,2,4,6])
-print(a)
-a.reverse()
-print(a)
