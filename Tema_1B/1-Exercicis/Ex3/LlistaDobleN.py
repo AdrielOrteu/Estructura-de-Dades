@@ -185,7 +185,6 @@ class LlistaDobleN:
                     node.prev.succ, node.prev.prev = node.prev.prev, node.prev.succ
                     node = node.succ
         self._head, self._tail = self._tail, self._head
-        print(self)
     
     def append(self, val):
         self.inserirPosicio(val, -1)
