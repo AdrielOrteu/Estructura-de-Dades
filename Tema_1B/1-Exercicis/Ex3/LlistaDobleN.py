@@ -1,4 +1,4 @@
-
+from copy import deepcopy
 
 class LlistaDobleN:
     class _Node:
@@ -105,14 +105,30 @@ class LlistaDobleN:
             raise IndexError
     
     def inserirPosicioList(self,pos, l2):
-        if len(self) == 0:
-            print(len(self))
-        if pos >= 0:
-            for i, val in enumerate(l2):
-                self.inserirPosicio(val, pos+i)
+        node = self[pos]
+        #        print(node)
+        if node is None:
+            self.__init__(l2)
+        elif pos < 0:
+            for value in l2:
+                if node.succ is None:
+                    self._tail = self._Node(val=value, prev=node, succ=node.succ)
+                    node.succ = self._tail
+                else:
+                    node.succ.prev = self._Node(val=value, prev=node, succ=node.succ)
+                    node.succ = node.succ.prev
+                self._length += 1
+                node = node.succ
         else:
-            for val in l2:
-                self.inserirPosicio(val, pos)
+            for value in l2:
+                if node.prev is None:
+                    self._head = self._Node(val=value, prev=node.prev, succ=node)
+                    node.prev = self._head
+                else:
+                    node.prev.succ = self._Node(val=value, prev=node.prev, succ=node)
+                    node.prev = node.prev.succ
+                self._length += 1
+            
     
     def deletePosicio(self, pos):
         if -self._length < pos < self._length:
@@ -160,9 +176,16 @@ class LlistaDobleN:
             raise ValueError
     
     def reverse(self):
-        for item in self: # TODO gives error due to editing the list I'm iterating through
-            item.succ, item.prev = item.prev, item.succ # I'm editing the list I'm iterating through (BAD PRACTICE)
+        if self._length > 0:
+            node = self._head.succ
+            for i in range(self._length):
+                if node is None:
+                    self._tail.succ, self._tail.prev = self._tail.prev, self._tail.succ
+                else:
+                    node.prev.succ, node.prev.prev = node.prev.prev, node.prev.succ
+                    node = node.succ
         self._head, self._tail = self._tail, self._head
+        print(self)
     
     def append(self, val):
         self.inserirPosicio(val, -1)
@@ -175,17 +198,18 @@ class LlistaDobleN:
     
     def __getitem__(self, item):
         if 0 <= item < self._length:
-            x = self._head
+            node = self._head
             for i in range(item):
-                x = x.succ
-            
+                node = node.succ
         elif 0 > item >= -self._length:
-            x=self._tail
+            node=self._tail
             for i in range(-1, item, -1):
-                x = x.prev
+                node = node.prev
         else:
+            if self._length == item:
+                return None
             raise IndexError ("index not in range")
-        return x
+        return node
     
     def __len__(self):
         return self._length
@@ -212,7 +236,7 @@ class LlistaDobleN:
                 tmp += node.__str__()
         return tmp + "⟧"
 
-a = LlistaDobleN([i for i in range(20)])
+a = LlistaDobleN([0,2,4,6])
 print(a)
-b = LlistaDobleN(a)
-print(b)
+a.reverse()
+print(a)
