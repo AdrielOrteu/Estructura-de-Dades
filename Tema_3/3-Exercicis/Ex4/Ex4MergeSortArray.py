@@ -1,4 +1,4 @@
-def MergeSortArray(v,indexInici=None,indexFinal=None):
+def mergeSortArray(v,indexInici=None,indexFinal=None):
     x = merge_sort(v)
     for i in range(len(v)):
         v[i] = x[i]
