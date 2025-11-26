@@ -68,14 +68,32 @@ class GrafHash:
         return iter(self._out[x].__iter__())
     
     def DFS(self, nInicial):
-        pass
+        visitat = {}
+        recorregut = []
+        if nInicial in self._nodes:
+            visitat[nInicial] = None
+            recorregut.append(nInicial)
+            visitat, recorregut = self.DFSRec(nInicial, visitat, recorregut)
+        return self.DFSRec(nInicial, visitat, recorregut)
     
     def DFSRec(self, n1, visitat, recorregut):
-        while self._out[n1].key() - visitat:
-        
+        recorregut.append(n1)
+        for n2 in self._out[n1]:
+            if n2 not in recorregut:
+                visitat[n2] = n1
+                visitat, recorregut = self.DFSRec(n2, visitat, recorregut)
+        return visitat, recorregut
     
     def donaPath(self, n1, n2, visitat):
-        pass
+        path = []
+        while n2 is not None and n2 != n1:
+            path.append(n2)
+            n2 = visitat[n2]
+        if n2 is None:
+            return []
+        path.append(n1)
+        path.reverse()
+        return path
     
     def __str__(self):
         cad = "===============GRAF===================\n"
